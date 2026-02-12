@@ -1,0 +1,4 @@
+      )}
+
+      {/* Mobile Modal */}
+      {mobileModalOpen && selectedEvent && (dsf

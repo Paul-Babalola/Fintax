@@ -1,0 +1,776 @@
+/* src/index.css - Scoped Global Styles */
+
+/* Import Google Fonts for fallbacks */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap");
+
+/* Import Rebond Grotesque from Google Fonts (if available) or use local */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+/* Roobert font - using local font files */
+@font-face {
+  font-family: "Roobert";
+  src: url("/fonts/roobert-font-family-1753689546-0/RoobertTRIAL-Regular-BF67243fd53fdf2.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roobert";
+  src: url("/fonts/roobert-font-family-1753689546-0/RoobertTRIAL-Medium-BF67243fd53e059.otf")
+    format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roobert";
+  src: url("/fonts/roobert-font-family-1753689546-0/RoobertTRIAL-SemiBold-BF67243fd54213d.otf")
+    format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roobert";
+  src: url("/fonts/roobert-font-family-1753689546-0/RoobertTRIAL-Bold-BF67243fd540abb.otf")
+    format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Rebond Grotesque font face */
+@font-face {
+  font-family: "Rebond Grotesque";
+  src: url("/fonts/rebond-grotesque-font-family-1753627987-0/ESRebondGrotesqueTRIAL-Regular-BF66189040b697b.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rebond Grotesque";
+  src: url("/fonts/rebond-grotesque-font-family-1753627987-0/ESRebondGrotesqueTRIAL-Medium-BF6618904088566.otf")
+    format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rebond Grotesque";
+  src: url("/fonts/rebond-grotesque-font-family-1753627987-0/ESRebondGrotesqueTRIAL-Semibold-BF66189040640ea.otf")
+    format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rebond Grotesque";
+  src: url("/fonts/rebond-grotesque-font-family-1753627987-0/ESRebondGrotesqueTRIAL-Bold-BF66189040400df.otf")
+    format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rebond Grotesque";
+  src: url("/fonts/rebond-grotesque-font-family-1753627987-0/ESRebondGrotesqueTRIAL-Italic-BF66189040a4d2d.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rebond Grotesque";
+  src: url("/fonts/rebond-grotesque-font-family-1753627987-0/ESRebondGrotesqueTRIAL-MediumItalic-BF6618904082cb3.otf")
+    format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rebond Grotesque";
+  src: url("/fonts/rebond-grotesque-font-family-1753627987-0/ESRebondGrotesqueTRIAL-SemiboldItalic-BF6618904043e67.otf")
+    format("opentype");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rebond Grotesque";
+  src: url("/fonts/rebond-grotesque-font-family-1753627987-0/ESRebondGrotesqueTRIAL-BoldItalic-BF6618904029e34.otf")
+    format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* CSS Variables for fonts - scoped to specific components */
+:root {
+  --font-rebond: "Rebond Grotesque", "Syne", "Space Grotesk", sans-serif;
+  --font-roobert: "Roobert", "Inter", sans-serif;
+}
+
+/* Alternative: If you have local font files, uncomment and use these */
+/*
+@font-face {
+  font-family: "Roobert";
+  src: url("/fonts/Roobert-Regular.woff2") format("woff2"),
+       url("/fonts/Roobert-Regular.woff") format("woff"),
+       url("/fonts/Roobert-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roobert";
+  src: url("/fonts/Roobert-Medium.woff2") format("woff2"),
+       url("/fonts/Roobert-Medium.woff") format("woff"),
+       url("/fonts/Roobert-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roobert";
+  src: url("/fonts/Roobert-SemiBold.woff2") format("woff2"),
+       url("/fonts/Roobert-SemiBold.woff") format("woff"),
+       url("/fonts/Roobert-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roobert";
+  src: url("/fonts/Roobert-Bold.woff2") format("woff2"),
+       url("/fonts/Roobert-Bold.woff") format("woff"),
+       url("/fonts/Roobert-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rebond Grotesque";
+  src: url("/fonts/RebondGrotesque-Regular.woff2") format("woff2"),
+       url("/fonts/RebondGrotesque-Regular.woff") format("woff"),
+       url("/fonts/RebondGrotesque-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rebond Grotesque";
+  src: url("/fonts/RebondGrotesque-Medium.woff2") format("woff2"),
+       url("/fonts/RebondGrotesque-Medium.woff") format("woff"),
+       url("/fonts/RebondGrotesque-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rebond Grotesque";
+  src: url("/fonts/RebondGrotesque-SemiBold.woff2") format("woff2"),
+       url("/fonts/RebondGrotesque-SemiBold.woff") format("woff"),
+       url("/fonts/RebondGrotesque-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rebond Grotesque";
+  src: url("/fonts/RebondGrotesque-Bold.woff2") format("woff2"),
+       url("/fonts/RebondGrotesque-Bold.woff") format("woff"),
+       url("/fonts/RebondGrotesque-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+/* Scoped CSS Variables - only for specific components */
+:root {
+  --font-roobert: "Roobert", "Inter", system-ui, -apple-system, sans-serif;
+  --font-rebond: "Rebond Grotesque", "Space Grotesk", system-ui, -apple-system,
+    sans-serif;
+}
+
+/* Minimal global reset - only essential styles */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  font-family: var(--font-roobert);
+  background-color: #260635;
+  color: #ffffff;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Mobile-specific overflow fixes */
+@media (max-width: 768px) {
+  * {
+    max-width: 100%;
+  }
+
+  html,
+  body,
+  #root {
+    overflow-x: hidden !important;
+  }
+
+  /* Prevent horizontal scrolling on all containers */
+  div,
+  section,
+  main,
+  header,
+  footer {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom styled scrollbars - Global */
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #360052;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2a003d;
+}
+
+::-webkit-scrollbar-corner {
+  background: #f1f1f1;
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #360052 #f1f1f1;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility - scoped to main app */
+/* #root *:focus {
+  outline: 2px solid #80ff72;
+  outline-offset: 2px;
+} */
+
+/* Button reset - scoped to main app */
+#root button {
+  cursor: pointer;
+}
+
+/* Link reset - scoped to main app */
+#root a {
+  /* color: inherit; */
+  text-decoration: none;
+}
+
+/* Custom gradient text utility - scoped */
+.gradient-text {
+  background: linear-gradient(90deg, #772e9a 0%, #bc4af6 63.94%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Scoped TracksSection styles - only affects this specific section */
+section.bg-\[#f4f0f8\] {
+  color: #1b0028;
+}
+
+section.bg-\[#f4f0f8\] * {
+  color: inherit;
+}
+
+/* Font utility classes - scoped */
+.font-rebond {
+  font-family: var(--font-rebond);
+}
+
+.font-roobert {
+  font-family: var(--font-roobert);
+}
+
+/* Component-specific scopes */
+
+/* Landing Page Scope */
+.payaza-landing-page {
+  font-family: var(--font-roobert);
+  background-color: #1b0029;
+  color: #ffffff;
+}
+
+.payaza-landing-page * {
+  box-sizing: border-box;
+}
+
+.payaza-landing-page button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.payaza-landing-page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.payaza-landing-page *:focus {
+  outline: 2px solid #80ff72;
+  outline-offset: 2px;
+}
+
+/* Process Section Scope */
+.process-section {
+  font-family: var(--font-roobert);
+}
+
+.process-section * {
+  box-sizing: border-box;
+}
+
+/* Expectations Section Scope */
+.expectations-section {
+  font-family: var(--font-roobert);
+  height: 100%;
+}
+
+.expectations-section * {
+  box-sizing: border-box;
+}
+
+/* FAQ Section Scope */
+.faq-section {
+  font-family: var(--font-roobert);
+}
+
+.faq-section * {
+  box-sizing: border-box;
+}
+
+/* Partner Section Scope */
+.partner-section {
+  font-family: var(--font-roobert);
+}
+
+.partner-section * {
+  box-sizing: border-box;
+}
+
+/* Footer Scope */
+.footer-section {
+  font-family: var(--font-roobert);
+}
+
+.footer-section * {
+  box-sizing: border-box;
+}
+
+/* Tracks Section Scope */
+.tracks-section {
+  font-family: var(--font-roobert);
+}
+
+.tracks-section * {
+  box-sizing: border-box;
+}
+
+/* Navigation Scope */
+.navigation-section {
+  font-family: var(--font-roobert);
+}
+
+.navigation-section * {
+  box-sizing: border-box;
+}
+
+/* Alternative scrollbar utilities */
+.scrollbar-hide {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom thin scrollbar utility */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #360052;
+  border-radius: 2px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #2a003d;
+}
+
+/* Animation keyframes for RevealCards */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Professional FinTax Dashboard Styles */
+.fintax-dashboard {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  color: #1e293b;
+  letter-spacing: -0.01em;
+}
+
+.fintax-dashboard * {
+  font-family: inherit;
+}
+
+/* Custom scrollbar with professional styling */
+.fintax-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.fintax-scroll::-webkit-scrollbar-track {
+  background: rgba(148, 163, 184, 0.1);
+  border-radius: 4px;
+}
+
+.fintax-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #64748b, #475569);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.fintax-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #475569, #334155);
+}
+
+/* Enhanced chart container with professional shadows */
+.chart-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  height: 320px;
+  max-height: 420px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 768px) {
+  .chart-container {
+    height: 380px;
+    padding: 24px;
+  }
+}
+
+/* Professional card styling with depth */
+.professional-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.05),
+    0 1px 3px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.professional-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 
+    0 12px 25px rgba(0, 0, 0, 0.1),
+    0 8px 15px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(14, 165, 233, 0.2);
+}
+
+/* Typography improvements */
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #0f172a;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #0ea5e9, #06b6d4);
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #64748b;
+  margin-bottom: 2rem;
+  max-width: 65ch;
+}
+
+/* Professional button styling */
+.btn-primary {
+  background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.025em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 14px rgba(14, 165, 233, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 25px rgba(14, 165, 233, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #0284c7 0%, #0891b2 100%);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.9);
+  color: #334155;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(14, 165, 233, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Professional sidebar styling */
+.sidebar-nav-item {
+  position: relative;
+  border-radius: 12px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 2px 8px;
+}
+
+.sidebar-nav-item.active {
+  background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+  color: white;
+  box-shadow: 
+    0 4px 14px rgba(14, 165, 233, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav-item.active::before {
+  display: none;
+}
+
+.sidebar-nav-item:not(.active):hover {
+  background: rgba(14, 165, 233, 0.1);
+  color: #0ea5e9;
+}
+
+/* Professional status indicator */
+.status-indicator {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 1px solid rgba(14, 165, 233, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.status-progress {
+  background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e1 100%);
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.status-progress-bar {
+  background: linear-gradient(90deg, #0ea5e9 0%, #06b6d4 100%);
+  height: 100%;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.status-progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Insight callout styling */
+.insight-callout {
+  background: linear-gradient(135deg, #fefce8 0%, #fef3c7 100%);
+  border-left: 4px solid #f59e0b;
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.insight-callout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #f59e0b, transparent);
+}
+
+/* Fade in animations */
+.fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger animation delays */
+.fade-in-up:nth-child(1) { animation-delay: 0.1s; }
+.fade-in-up:nth-child(2) { animation-delay: 0.2s; }
+.fade-in-up:nth-child(3) { animation-delay: 0.3s; }
+.fade-in-up:nth-child(4) { animation-delay: 0.4s; }
+
+/* Professional mobile header */
+.mobile-header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+/* Timeline styling */
+.timeline-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  border-left: 4px solid #0ea5e9;
+  padding: 24px;
+  position: relative;
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.05),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-card::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  height: 1px;
+  background: linear-gradient(90deg, #0ea5e9, #06b6d4, #0ea5e9);
+  border-radius: 1px;
+}
