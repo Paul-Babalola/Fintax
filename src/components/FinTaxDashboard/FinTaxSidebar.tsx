@@ -83,7 +83,7 @@ const FinTaxSidebar: React.FC<FinTaxSidebarProps> = ({
       </div>
 
       {/* Status Footer */}
-      <div className="p-6 border-t border-slate-200/60">
+      {/* <div className="p-6 border-t border-slate-200/60">
         <div className="bg-gradient-to-r from-emerald-50 to-blue-50 p-4 rounded-xl border border-emerald-200/50">
           <div className="flex items-center justify-between mb-2">
             <h3 className="text-sm font-semibold text-slate-800">Project Viability</h3>
@@ -93,9 +93,9 @@ const FinTaxSidebar: React.FC<FinTaxSidebarProps> = ({
             </div>
           </div>
           <div className="mb-3">
-            <div className="w-full bg-slate-200/60 rounded-full h-2 overflow-hidden">
+            <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
               <div 
-                className="h-full bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full transition-all duration-1000 ease-out"
+                className="h-full bg-gradient-to-r from-emerald-500 to-blue-600 rounded-full transition-all duration-1000 ease-out"
                 style={{ width: '85%' }}
               />
             </div>
@@ -110,7 +110,7 @@ const FinTaxSidebar: React.FC<FinTaxSidebarProps> = ({
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </nav>
   );
 };

@@ -32,7 +32,7 @@ const ExecutiveSummaryView: React.FC<ExecutiveSummaryViewProps> = ({ onViewChang
               backgroundColor: 'rgba(14, 165, 233, 0.1)',
               borderColor: 'rgba(14, 165, 233, 0.8)',
               pointBackgroundColor: 'rgba(14, 165, 233, 1)',
-              pointBorderColor: 'rgba(255, 255, 255, 1)',
+              pointBorderColor: 'rgba(14, 165, 233, 1)',
               pointBorderWidth: 2,
               pointRadius: 6,
               pointHoverRadius: 8,
@@ -161,7 +161,7 @@ const ExecutiveSummaryView: React.FC<ExecutiveSummaryViewProps> = ({ onViewChang
         <div className="bg-gradient-to-br from-blue-50 via-blue-50/50 to-indigo-50 border border-blue-200/50 rounded-2xl p-8 hover:shadow-xl hover:shadow-blue-100/50 transition-all duration-300">
           <div className="flex items-center mb-6">
             <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center mr-4">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
             </div>
@@ -202,7 +202,7 @@ const ExecutiveSummaryView: React.FC<ExecutiveSummaryViewProps> = ({ onViewChang
         <div className="bg-gradient-to-br from-emerald-50 via-emerald-50/50 to-green-50 border border-emerald-200/50 rounded-2xl p-8 hover:shadow-xl hover:shadow-emerald-100/50 transition-all duration-300">
           <div className="flex items-center mb-6">
             <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-green-500 rounded-xl flex items-center justify-center mr-4">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
