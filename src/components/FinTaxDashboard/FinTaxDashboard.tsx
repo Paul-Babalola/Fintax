@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FinTaxSidebar from './FinTaxSidebar';
 import FinTaxContent from './FinTaxContent';
 
-export type FinTaxViewType = 'executive' | 'market' | 'tech' | 'business' | 'roadmap';
+export type FinTaxViewType = 'executive' | 'market' | 'tech' | 'business' | 'roadmap' | 'budget';
 
 // Project data store
 export const projectData = {

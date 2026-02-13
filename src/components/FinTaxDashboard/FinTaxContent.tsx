@@ -4,6 +4,7 @@ import ExecutiveSummaryView from './views/ExecutiveSummaryView';
 import MarketAnalysisView from './views/MarketAnalysisView';
 import TechStrategyView from './views/TechStrategyView';
 import BusinessModelView from './views/BusinessModelView';
+import BudgetManagementView from './views/BudgetManagementView';
 import RoadmapView from './views/RoadmapView';
 
 interface FinTaxContentProps {
@@ -22,6 +23,8 @@ const FinTaxContent: React.FC<FinTaxContentProps> = ({ activeView, onViewChange 
         return <TechStrategyView />;
       case 'business':
         return <BusinessModelView />;
+      case 'budget':
+        return <BudgetManagementView />;
       case 'roadmap':
         return <RoadmapView />;
       default:

@@ -125,7 +125,7 @@ const ExecutiveSummaryView: React.FC<ExecutiveSummaryViewProps> = ({ onViewChang
       <div className="mb-12">
         <h2 className="section-title">Project Verdict: Highly Relevant</h2>
         <p className="section-subtitle">
-          This comprehensive analysis evaluates the core viability of your "Bank-Integrated Tax & Budget" concept, 
+          This comprehensive analysis evaluates the core viability of your "Bank-Integrated Tax & Budget Management" concept, 
           synthesizing insights across technical feasibility, market dynamics, and user validation.
         </p>
         <div className="insight-callout mt-8">
@@ -134,10 +134,38 @@ const ExecutiveSummaryView: React.FC<ExecutiveSummaryViewProps> = ({ onViewChang
             Core Strategic Insight
           </h4>
           <p className="text-amber-700 leading-relaxed">
-            The convergence of the <strong>"Gig Economy"</strong> and <strong>"Open Banking"</strong> creates an unprecedented opportunity. 
-            While general budgeting apps address broad needs, tax-specific expense categorization represents a high-value, underserved pain point 
-            for freelancers in the US and SMEs in Nigeria.
+            The convergence of the <strong>"Gig Economy"</strong>, <strong>"Open Banking"</strong>, and <strong>"Personal Finance Management"</strong> creates an unprecedented opportunity. 
+            While general budgeting apps address broad needs, the combination of tax-specific expense categorization with intelligent budget management 
+            represents a high-value, underserved pain point for freelancers in the US and SMEs in Nigeria.
           </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-100">
+            <h4 className="font-bold text-blue-800 mb-3 flex items-center">
+              <span className="mr-2">📊</span>
+              Enhanced Value Proposition
+            </h4>
+            <ul className="text-blue-700 text-sm space-y-2">
+              <li>• <strong>Tax-Aware Budgeting:</strong> Budgets that automatically account for tax obligations</li>
+              <li>• <strong>Expense Forecasting:</strong> Predict tax-deductible vs. personal expenses</li>
+              <li>• <strong>Cash Flow Optimization:</strong> Plan for quarterly tax payments</li>
+              <li>• <strong>Goal-Based Savings:</strong> Emergency funds, tax reserves, and growth investments</li>
+            </ul>
+          </div>
+          
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border border-green-100">
+            <h4 className="font-bold text-green-800 mb-3 flex items-center">
+              <span className="mr-2">🎯</span>
+              Market Differentiation
+            </h4>
+            <ul className="text-green-700 text-sm space-y-2">
+              <li>• <strong>Beyond Mint/YNAB:</strong> Tax-integrated budget categories</li>
+              <li>• <strong>Freelancer-First:</strong> Irregular income budgeting strategies</li>
+              <li>• <strong>Predictive Analytics:</strong> AI-powered spending insights</li>
+              <li>• <strong>Compliance Ready:</strong> Export-ready tax documentation</li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -168,31 +196,31 @@ const ExecutiveSummaryView: React.FC<ExecutiveSummaryViewProps> = ({ onViewChang
           </div>
           <div className="space-y-6">
             <div className="flex items-start group">
-              <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white p-3 rounded-xl mr-4 shadow-lg group-hover:shadow-emerald-200 transition-shadow">
+              <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-gray p-3 rounded-xl mr-4 shadow-lg group-hover:shadow-emerald-200 transition-shadow">
                 <span className="text-sm font-bold">✓</span>
               </div>
               <div>
                 <h4 className="font-bold text-slate-800 mb-1">High Actionability</h4>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  Technically feasible with established banking APIs. Plaid (US) and Mono (Nigeria) provide robust infrastructure, 
-                  eliminating complex financial integration challenges.
+                  Technically feasible with established banking APIs and budget management frameworks. Plaid (US) and Mono (Nigeria) provide robust infrastructure, 
+                  while modern budget algorithms can leverage transaction categorization for intelligent expense forecasting.
                 </p>
               </div>
             </div>
             <div className="flex items-start group">
-              <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-3 rounded-xl mr-4 shadow-lg group-hover:shadow-blue-200 transition-shadow">
+              <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-gray p-3 rounded-xl mr-4 shadow-lg group-hover:shadow-blue-200 transition-shadow">
                 <span className="text-sm font-bold">↗</span>
               </div>
               <div>
                 <h4 className="font-bold text-slate-800 mb-1">Strong Market Fit</h4>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  Clear differentiation from generic budgeting apps. Automated "Deductible vs Non-Deductible" categorization 
-                  addresses a specific, high-value pain point.
+                  Clear differentiation from generic budgeting apps. Tax-aware budget management with automated "Deductible vs Non-Deductible" categorization, 
+                  irregular income handling, and tax-reserve planning addresses multiple high-value pain points simultaneously.
                 </p>
               </div>
             </div>
             <div className="flex items-start group">
-              <div className="bg-gradient-to-r from-amber-500 to-amber-600 text-white p-3 rounded-xl mr-4 shadow-lg group-hover:shadow-amber-200 transition-shadow">
+              <div className="bg-gradient-to-r from-amber-500 to-amber-600 text-gray p-3 rounded-xl mr-4 shadow-lg group-hover:shadow-amber-200 transition-shadow">
                 <span className="text-sm font-bold">⚠</span>
               </div>
               <div>

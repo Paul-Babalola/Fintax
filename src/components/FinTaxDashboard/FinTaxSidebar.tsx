@@ -19,6 +19,7 @@ const navItems: NavItem[] = [
   { id: 'market', label: 'Market Analysis', icon: '🌍' },
   { id: 'tech', label: 'Technical Strategy', icon: '⚙️' },
   { id: 'business', label: 'Business Model', icon: '💰' },
+  { id: 'budget', label: 'Budget Management', icon: '📈' },
   { id: 'roadmap', label: 'Roadmap & SWOT', icon: '🚀' },
 ];
 
