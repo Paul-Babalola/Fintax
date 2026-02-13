@@ -47,7 +47,7 @@ const BudgetManagementView: React.FC = () => {
             maintainAspectRatio: false,
             plugins: {
               legend: {
-                position: 'bottom',
+                position: 'bottom' as const,
                 labels: {
                   padding: 20,
                   usePointStyle: true,
@@ -61,13 +61,12 @@ const BudgetManagementView: React.FC = () => {
                 titleColor: 'white',
                 bodyColor: 'white',
                 callbacks: {
-                  label: function(context: any) {
+                  label: function(context: { label: string; parsed: number }) {
                     return `${context.label}: ${context.parsed}%`;
                   }
                 }
               }
-            },
-            cutout: '65%'
+            }
           }
         };
 

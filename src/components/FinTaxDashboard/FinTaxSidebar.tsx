@@ -28,54 +28,86 @@ const FinTaxSidebar: React.FC<FinTaxSidebarProps> = ({
   onViewChange, 
   isOpen
 }) => {
-  const baseClasses = "bg-white w-full md:w-64 border-r border-gray-200 flex-shrink-0 absolute md:relative h-full z-10 transform transition-transform duration-300 ease-in-out flex flex-col";
-  const mobileClasses = isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0";
-
   return (
-    <nav className={`${baseClasses} ${mobileClasses} bg-white/95 backdrop-blur-lg border-r border-slate-200/50`}>
-      <div className="p-8 hidden md:block border-b border-slate-100/80">
-        <div className="mb-4">
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent tracking-tight">
-            FinTax Insight
-          </h1>
-          <p className="text-sm text-slate-500 mt-1 font-medium">Project Feasibility Analysis</p>
+    <nav className={`
+      w-80 lg:w-72 xl:w-80 bg-white/80 backdrop-blur-xl border-r border-slate-200/60 
+      flex-shrink-0 fixed lg:relative h-full z-50 transform transition-all duration-300 ease-out
+      shadow-xl lg:shadow-none
+      ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+    `}>
+      {/* Header */}
+      <div className="p-6 lg:p-8 border-b border-slate-200/60">
+        <div className="flex items-center space-x-3 mb-4">
+          <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
+            <span className="text-blue-300 font-bold text-lg">FT</span>
+          </div>
+          <div>
+            <h1 className="text-xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent tracking-tight">
+              FinTax Insight
+            </h1>
+            <p className="text-xs text-slate-500 font-medium">Project Feasibility Analysis</p>
+          </div>
         </div>
-        <div className="h-px bg-gradient-to-r from-blue-500/20 via-cyan-500/20 to-transparent"></div>
+        <div className="h-px bg-gradient-to-r from-blue-500/30 via-indigo-500/30 to-transparent"></div>
       </div>
       
-      <div className="flex-grow overflow-y-auto fintax-scroll py-6">
-        <ul className="space-y-2 px-3">
+      {/* Navigation */}
+      <div className="flex-grow overflow-y-auto px-4 py-2">
+        <ul className="space-y-1">
           {navItems.map((item) => (
             <li key={item.id}>
               <button
                 onClick={() => onViewChange(item.id)}
-                className={`sidebar-nav-item w-full text-left px-4 py-3.5 flex items-center group ${
-                  activeView === item.id ? 'active' : ''
-                }`}
+                className={`
+                  w-full text-left px-4 py-3 rounded-xl flex items-center group transition-all duration-200
+                  ${activeView === item.id 
+                    ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-blue-500 shadow-lg shadow-blue-500/25' 
+                    : 'hover:bg-slate-100/80 text-slate-700 hover:text-slate-900'
+                  }
+                `}
               >
-                <span className={`mr-3 text-lg transition-transform group-hover:scale-110 ${
-                  activeView === item.id ? 'filter drop-shadow-sm' : ''
+                <span className={`mr-4 text-xl transition-all duration-200 ${
+                  activeView === item.id ? 'scale-110 drop-shadow-sm' : 'group-hover:scale-105'
                 }`}>
                   {item.icon}
                 </span>
-                <span className="font-medium text-sm tracking-wide">{item.label}</span>
+                <span className={`font-medium text-sm tracking-tight ${
+                  activeView === item.id ? 'text-blue-500' : ''
+                }`}>
+                  {item.label}
+                </span>
               </button>
             </li>
           ))}
         </ul>
       </div>
 
-      <div className="p-6 border-t border-slate-100/80">
-        <div className="status-indicator">
-          <h3 className="text-sm font-semibold text-slate-700 mb-3">Actionability Score</h3>
-          <div className="status-progress mb-3">
-            <div className="status-progress-bar" style={{ width: '85%' }} />
+      {/* Status Footer */}
+      <div className="p-6 border-t border-slate-200/60">
+        <div className="bg-gradient-to-r from-emerald-50 to-blue-50 p-4 rounded-xl border border-emerald-200/50">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-sm font-semibold text-slate-800">Project Viability</h3>
+            <div className="flex items-center space-x-1">
+              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+              <span className="text-xs font-medium text-emerald-700">Live</span>
+            </div>
+          </div>
+          <div className="mb-3">
+            <div className="w-full bg-slate-200/60 rounded-full h-2 overflow-hidden">
+              <div 
+                className="h-full bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full transition-all duration-1000 ease-out"
+                style={{ width: '85%' }}
+              />
+            </div>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-xs font-medium text-slate-600">Project Viability</span>
-            <span className="text-sm font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-              High (85%)
-            </span>
+            <span className="text-xs font-medium text-slate-600">Actionability Score</span>
+            <div className="flex items-center space-x-1">
+              <span className="text-sm font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
+                High
+              </span>
+              <span className="text-xs text-slate-500">(85%)</span>
+            </div>
           </div>
         </div>
       </div>

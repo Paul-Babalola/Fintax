@@ -59,46 +59,54 @@ const FinTaxDashboard: React.FC = () => {
   }, []);
 
   return (
-    <div className="fintax-dashboard h-screen overflow-hidden flex flex-col md:flex-row" 
-         style={{ 
-           fontFamily: "'Inter', sans-serif",
-           backgroundColor: '#f3f4f6',
-           color: '#1f2937'
-         }}>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20 font-inter antialiased">
       
       {/* Mobile Header */}
-      <header className="md:hidden bg-white border-b border-gray-200 p-4 flex justify-between items-center z-20">
-        <h1 className="text-xl font-bold text-teal-800">FinTax Insight</h1>
+      <header className="lg:hidden bg-white/80 backdrop-blur-xl border-b border-slate-200/60 px-4 py-3 flex justify-between items-center sticky top-0 z-50">
+        <div className="flex items-center space-x-3">
+          <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
+            <span className="text-white text-sm font-bold">FT</span>
+          </div>
+          <h1 className="text-xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+            FinTax Insight
+          </h1>
+        </div>
         <button 
           onClick={toggleSidebar}
-          className="text-gray-600 focus:outline-none text-2xl"
+          className="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 transition-colors duration-200 flex items-center justify-center"
         >
-          &#9776;
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-slate-600">
+            <line x1="4" x2="20" y1="6" y2="6"/>
+            <line x1="4" x2="20" y1="12" y2="12"/>
+            <line x1="4" x2="20" y1="18" y2="18"/>
+          </svg>
         </button>
       </header>
 
-      {/* Sidebar Navigation */}
-      <FinTaxSidebar
-        activeView={activeView}
-        onViewChange={handleViewChange}
-        isOpen={sidebarOpen}
-        onClose={closeSidebar}
-      />
+      <div className="flex flex-1 lg:flex-row flex-col relative">
+        {/* Sidebar Navigation */}
+        <FinTaxSidebar
+          activeView={activeView}
+          onViewChange={handleViewChange}
+          isOpen={sidebarOpen}
+          onClose={closeSidebar}
+        />
 
-      {/* Main Content Area */}
-      <main className="flex-1 h-full overflow-y-auto bg-gray-50 relative w-full fintax-scroll">
-        {/* Overlay for mobile sidebar */}
-        {sidebarOpen && (
-          <div 
-            className="fixed inset-0 bg-gray-900 bg-opacity-50 z-0 md:hidden"
-            onClick={closeSidebar}
-          />
-        )}
-        
-        <div className="max-w-7xl mx-auto p-4 md:p-8 pb-20">
-          <FinTaxContent activeView={activeView} onViewChange={handleViewChange} />
-        </div>
-      </main>
+        {/* Main Content Area */}
+        <main className="flex-1 lg:ml-0 min-h-screen relative">
+          {/* Overlay for mobile sidebar */}
+          {sidebarOpen && (
+            <div 
+              className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
+              onClick={closeSidebar}
+            />
+          )}
+          
+          <div className="px-4 py-6 lg:px-8 lg:py-10 max-w-7xl mx-auto">
+            <FinTaxContent activeView={activeView} onViewChange={handleViewChange} />
+          </div>
+        </main>
+      </div>
     </div>
   );
 };
