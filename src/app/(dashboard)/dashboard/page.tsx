@@ -1,26 +1,42 @@
 import { createClient } from "@/lib/supabase/server";
 import {
-  calculateTax, formatNaira, formatRate,
+  calculateTax,
+  formatNaira,
+  formatRate,
   getExemptionStatus,
 } from "@/lib/tax-engine/nta2025";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { TrendingUp, Wallet, FileText, AlertCircle, CheckCircle2 } from "lucide-react";
+import {
+  TrendingUp,
+  Wallet,
+  FileText,
+  AlertCircle,
+  CheckCircle2,
+} from "lucide-react";
 import Link from "next/link";
 
 const FIXED_LABELS: Record<string, string> = {
-  rent: "Rent", food: "Food", transport: "Transport",
-  utilities: "Utilities", health: "Health", education: "Education",
-  entertainment: "Entertainment", other: "Other",
+  rent: "Rent",
+  food: "Food",
+  transport: "Transport",
+  utilities: "Utilities",
+  health: "Health",
+  education: "Education",
+  entertainment: "Entertainment",
+  other: "Other",
 };
 
 export default async function DashboardPage() {
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   const now = new Date();
   const monthStart = new Date(now.getFullYear(), now.getMonth(), 1)
-    .toISOString().split("T")[0];
+    .toISOString()
+    .split("T")[0];
 
   // ── Fetch data ───────────────────────────────────────────────────────────
 
@@ -40,7 +56,9 @@ export default async function DashboardPage() {
   // Include custom_category_id and joined name for display
   const { data: budgetRows } = await supabase
     .from("budgets")
-    .select("id, category, monthly_limit, custom_category_id, user_categories(name)")
+    .select(
+      "id, category, monthly_limit, custom_category_id, user_categories(name)",
+    )
     .eq("user_id", user!.id);
 
   const { data: profile } = await supabase
@@ -51,23 +69,32 @@ export default async function DashboardPage() {
 
   // ── Income summary ───────────────────────────────────────────────────────
 
-  const totalMonthlyIncome    = (incomeRows ?? []).reduce((s, r) => s + r.amount, 0);
-  const totalMonthlyExpenses  = (expenseRows ?? []).reduce((s, r) => s + r.amount, 0);
-  const totalWHTThisMonth     = (incomeRows ?? []).reduce((s, r) => s + (r.wht_amount ?? 0), 0);
-  const netPosition           = totalMonthlyIncome - totalMonthlyExpenses;
+  const totalMonthlyIncome = (incomeRows ?? []).reduce(
+    (s, r) => s + r.amount,
+    0,
+  );
+  const totalMonthlyExpenses = (expenseRows ?? []).reduce(
+    (s, r) => s + r.amount,
+    0,
+  );
+  const totalWHTThisMonth = (incomeRows ?? []).reduce(
+    (s, r) => s + (r.wht_amount ?? 0),
+    0,
+  );
+  const netPosition = totalMonthlyIncome - totalMonthlyExpenses;
 
   // ── Tax estimate (annualised) ────────────────────────────────────────────
 
   const monthsElapsed = now.getMonth() + 1;
-  const annualSalary  = (totalMonthlyIncome / monthsElapsed) * 12;
+  const annualSalary = (totalMonthlyIncome / monthsElapsed) * 12;
 
   const estimate = calculateTax(
     { salary: annualSalary },
     {
-      annual_rent:           profile?.annual_rent ?? undefined,
+      annual_rent: profile?.annual_rent ?? undefined,
       pension_contributions: (profile?.monthly_pension_contribution ?? 0) * 12,
-      wht_already_paid:      totalWHTThisMonth * (12 / monthsElapsed),
-    }
+      wht_already_paid: totalWHTThisMonth * (12 / monthsElapsed),
+    },
   );
 
   const exemptionStatus = getExemptionStatus(estimate);
@@ -98,17 +125,22 @@ export default async function DashboardPage() {
       : (spentByFixed[b.category] ?? 0);
 
     const limit = b.monthly_limit;
-    const pct   = limit > 0 ? Math.min(100, Math.round((spent / limit) * 100)) : 0;
+    const pct =
+      limit > 0 ? Math.min(100, Math.round((spent / limit) * 100)) : 0;
 
     // Display label — prefer custom category name over fixed label
     const label = b.custom_category_id
-      ? ((b.user_categories as { name: string } | null)?.name ?? "Custom")
+      ? ((b.user_categories as unknown as { name: string } | null)?.name ??
+        "Custom")
       : (FIXED_LABELS[b.category] ?? b.category);
 
     return { id: b.id, label, limit, spent, pct };
   });
 
-  const monthLabel = now.toLocaleString("en-NG", { month: "long", year: "numeric" });
+  const monthLabel = now.toLocaleString("en-NG", {
+    month: "long",
+    year: "numeric",
+  });
 
   return (
     <div className="space-y-6">
@@ -123,16 +155,22 @@ export default async function DashboardPage() {
           title="Income this month"
           value={formatNaira(totalMonthlyIncome)}
           icon={<TrendingUp className="h-4 w-4 text-muted-foreground" />}
-          sub={totalMonthlyIncome === 0 ? "No entries yet" : `${incomeRows?.length} entries`}
+          sub={
+            totalMonthlyIncome === 0
+              ? "No entries yet"
+              : `${incomeRows?.length} entries`
+          }
           href="/income"
         />
         <StatCard
           title="Expenses this month"
           value={formatNaira(totalMonthlyExpenses)}
           icon={<Wallet className="h-4 w-4 text-muted-foreground" />}
-          sub={netPosition >= 0
-            ? `${formatNaira(netPosition)} surplus`
-            : `${formatNaira(Math.abs(netPosition))} over income`}
+          sub={
+            netPosition >= 0
+              ? `${formatNaira(netPosition)} surplus`
+              : `${formatNaira(Math.abs(netPosition))} over income`
+          }
           href="/expenses"
           subColor={netPosition >= 0 ? "text-green-600" : "text-destructive"}
         />
@@ -146,10 +184,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* ── Tax status banner ── */}
-      <TaxStatusBanner
-        status={exemptionStatus}
-        estimate={estimate}
-      />
+      <TaxStatusBanner status={exemptionStatus} estimate={estimate} />
 
       {/* ── Budget progress ── */}
       {budgetsWithProgress.length > 0 && (
@@ -175,10 +210,15 @@ export default async function DashboardPage() {
       {totalMonthlyIncome === 0 && budgetsWithProgress.length === 0 && (
         <Card className="border-dashed">
           <CardContent className="py-10 text-center text-sm text-muted-foreground">
-            <p className="font-medium text-foreground mb-1">Nothing tracked yet</p>
+            <p className="font-medium text-foreground mb-1">
+              Nothing tracked yet
+            </p>
             <p>
               Start by{" "}
-              <Link href="/income" className="underline underline-offset-4 text-foreground">
+              <Link
+                href="/income"
+                className="underline underline-offset-4 text-foreground"
+              >
                 logging your income
               </Link>{" "}
               — your tax estimate will appear here automatically.
@@ -193,7 +233,12 @@ export default async function DashboardPage() {
 // ── Sub-components ────────────────────────────────────────────────────────────
 
 function StatCard({
-  title, value, icon, sub, href, subColor = "text-muted-foreground",
+  title,
+  value,
+  icon,
+  sub,
+  href,
+  subColor = "text-muted-foreground",
 }: {
   title: string;
   value: string;
@@ -221,7 +266,8 @@ function StatCard({
 }
 
 function TaxStatusBanner({
-  status, estimate,
+  status,
+  estimate,
 }: {
   status: ReturnType<typeof getExemptionStatus>;
   estimate: ReturnType<typeof calculateTax>;
@@ -229,15 +275,19 @@ function TaxStatusBanner({
   const isPositive = status.status === "exempt" || status.status === "refund";
 
   return (
-    <Card className={isPositive
-      ? "border-green-200 bg-green-50/50"
-      : "border-amber-200 bg-amber-50/50"
-    }>
+    <Card
+      className={
+        isPositive
+          ? "border-green-200 bg-green-50/50"
+          : "border-amber-200 bg-amber-50/50"
+      }
+    >
       <CardContent className="py-4 flex items-start gap-3">
-        {isPositive
-          ? <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 shrink-0" />
-          : <AlertCircle  className="h-5 w-5 text-amber-600 mt-0.5 shrink-0" />
-        }
+        {isPositive ? (
+          <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 shrink-0" />
+        ) : (
+          <AlertCircle className="h-5 w-5 text-amber-600 mt-0.5 shrink-0" />
+        )}
         <div className="flex-1 min-w-0">
           <p className="text-sm font-medium">{status.message}</p>
           {!estimate.is_exempt && (
@@ -247,7 +297,9 @@ function TaxStatusBanner({
                 {formatNaira(estimate.monthly_liability)}
               </span>
               {estimate.tax_saved_by_deductions > 0 && (
-                <> &middot; Deductions saving you{" "}
+                <>
+                  {" "}
+                  &middot; Deductions saving you{" "}
                   <span className="font-medium text-green-700">
                     {formatNaira(estimate.tax_saved_by_deductions)}
                   </span>
@@ -256,14 +308,19 @@ function TaxStatusBanner({
             </p>
           )}
         </div>
-        <Badge variant="outline" className="shrink-0 text-xs">NTA 2025</Badge>
+        <Badge variant="outline" className="shrink-0 text-xs">
+          NTA 2025
+        </Badge>
       </CardContent>
     </Card>
   );
 }
 
 function BudgetRow({
-  label, spent, limit, pct,
+  label,
+  spent,
+  limit,
+  pct,
 }: {
   label: string;
   spent: number;
@@ -271,8 +328,7 @@ function BudgetRow({
   pct: number;
 }) {
   const color =
-    pct >= 100 ? "bg-destructive" :
-    pct >= 80  ? "bg-amber-500"   : "bg-[#1A6B4A]";
+    pct >= 100 ? "bg-destructive" : pct >= 80 ? "bg-amber-500" : "bg-[#1A6B4A]";
 
   return (
     <div className="space-y-1.5">

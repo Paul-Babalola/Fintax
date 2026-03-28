@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
@@ -16,7 +16,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get("redirectTo") ?? "/dashboard";
@@ -124,9 +124,7 @@ export default function LoginPage() {
             />
           </div>
 
-          {error && (
-            <p className="text-sm text-destructive">{error}</p>
-          )}
+          {error && <p className="text-sm text-destructive">{error}</p>}
 
           <Button type="submit" className="w-full" disabled={loading}>
             {loading ? "Signing in…" : "Sign in"}
@@ -136,7 +134,10 @@ export default function LoginPage() {
 
       <CardFooter className="flex justify-center text-sm text-muted-foreground">
         Don&apos;t have an account?&nbsp;
-        <Link href="/signup" className="text-foreground underline underline-offset-4">
+        <Link
+          href="/signup"
+          className="text-foreground underline underline-offset-4"
+        >
           Sign up
         </Link>
       </CardFooter>
@@ -168,5 +169,13 @@ function GoogleIcon() {
         fill="#EA4335"
       />
     </svg>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginForm />
+    </Suspense>
   );
 }
