@@ -124,9 +124,22 @@ function LoginForm() {
             />
           </div>
 
+          <div className="flex justify-end">
+            <Link
+              href="/forgot-password"
+              className="text-xs text-muted-foreground hover:text-foreground underline underline-offset-4"
+            >
+              Forgot password?
+            </Link>
+          </div>
+
           {error && <p className="text-sm text-destructive">{error}</p>}
 
-          <Button type="submit" className="w-full" disabled={loading}>
+          <Button
+            type="submit"
+            className="w-full bg-[#1A6B4A] hover:bg-[#145a3d]"
+            disabled={loading}
+          >
             {loading ? "Signing in…" : "Sign in"}
           </Button>
         </form>

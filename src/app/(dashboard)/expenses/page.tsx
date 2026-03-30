@@ -3,22 +3,31 @@ import { formatNaira } from "@/lib/tax-engine/nta2025";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ExpenseEntryForm } from "@/components/forms/expense-entry-form";
-import { DeleteEntryButton } from "@/components/ui/delete-entry-button";
+import { EntryActions } from "@/components/ui/entry-actions";
 
 const FIXED_LABELS: Record<string, string> = {
-  rent: "Rent", food: "Food", transport: "Transport",
-  utilities: "Utilities", health: "Health", education: "Education",
-  entertainment: "Entertainment", other: "Other",
+  rent: "Rent",
+  food: "Food",
+  transport: "Transport",
+  utilities: "Utilities",
+  health: "Health",
+  education: "Education",
+  entertainment: "Entertainment",
+  other: "Other",
 };
 
 const DEDUCTION_LABELS: Record<string, string> = {
-  rent_relief: "Rent relief", pension: "Pension",
-  nhf: "NHF", life_assurance: "Life assurance",
+  rent_relief: "Rent relief",
+  pension: "Pension",
+  nhf: "NHF",
+  life_assurance: "Life assurance",
 };
 
 export default async function ExpensesPage() {
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   const { data: entries } = await supabase
     .from("expenses")
@@ -47,7 +56,10 @@ export default async function ExpensesPage() {
         </p>
       </div>
 
-      <ExpenseEntryForm userId={user!.id} userCategories={userCategories ?? []} />
+      <ExpenseEntryForm
+        userId={user!.id}
+        userCategories={userCategories ?? []}
+      />
 
       {(entries ?? []).length > 0 && (
         <div className="flex gap-6 text-sm">
@@ -103,7 +115,9 @@ export default async function ExpensesPage() {
                     </div>
                     <p className="text-xs text-muted-foreground mt-1">
                       {new Date(entry.date).toLocaleDateString("en-NG", {
-                        day: "numeric", month: "short", year: "numeric",
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
                       })}
                       {entry.notes && <> &middot; {entry.notes}</>}
                     </p>
@@ -111,10 +125,10 @@ export default async function ExpensesPage() {
 
                   <div className="flex items-center gap-3 shrink-0">
                     <p className="font-medium">{formatNaira(entry.amount)}</p>
-                    <DeleteEntryButton
+                    <EntryActions
                       id={entry.id}
                       table="expenses"
-                      label={`${categoryLabel} expense`}
+                      editHref={`/expenses/${entry.id}/edit`}
                     />
                   </div>
                 </div>

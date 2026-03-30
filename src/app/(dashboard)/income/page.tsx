@@ -3,7 +3,7 @@ import { formatNaira } from "@/lib/tax-engine/nta2025";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { IncomeEntryForm } from "@/components/forms/income-entry-form";
-import { DeleteEntryButton } from "@/components/ui/delete-entry-button";
+import { EntryActions } from "@/components/ui/entry-actions";
 
 const SOURCE_LABELS: Record<string, string> = {
   salary: "Salary", freelance: "Freelance", investment: "Investment",
@@ -100,10 +100,10 @@ export default async function IncomePage() {
                       </p>
                     )}
                   </div>
-                  <DeleteEntryButton
+                  <EntryActions
                     id={entry.id}
                     table="income_entries"
-                    label="income entry"
+                    editHref={`/income/${entry.id}/edit`}
                   />
                 </div>
               </div>
