@@ -1,14 +1,21 @@
 import Stripe from 'stripe';
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('STRIPE_SECRET_KEY is not set');
+let stripeInstance: Stripe | null = null;
+
+function getStripe(): Stripe {
+  if (!stripeInstance) {
+    if (!process.env.STRIPE_SECRET_KEY) {
+      throw new Error('STRIPE_SECRET_KEY is not set');
+    }
+    stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2026-03-25.dahlia',
+    });
+  }
+  return stripeInstance;
 }
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2024-12-18.acacia',
-});
-
 export async function createStripeCustomer(email: string, userId: string) {
+  const stripe = getStripe();
   return await stripe.customers.create({
     email,
     metadata: {
@@ -18,6 +25,7 @@ export async function createStripeCustomer(email: string, userId: string) {
 }
 
 export async function createPaymentIntent(amount: number, customerId: string, planName: string) {
+  const stripe = getStripe();
   return await stripe.paymentIntents.create({
     amount,
     currency: 'ngn',
@@ -30,6 +38,7 @@ export async function createPaymentIntent(amount: number, customerId: string, pl
 }
 
 export async function createSubscription(customerId: string, priceId: string) {
+  const stripe = getStripe();
   return await stripe.subscriptions.create({
     customer: customerId,
     items: [{ price: priceId }],
@@ -40,9 +49,11 @@ export async function createSubscription(customerId: string, priceId: string) {
 }
 
 export async function cancelSubscription(subscriptionId: string) {
+  const stripe = getStripe();
   return await stripe.subscriptions.cancel(subscriptionId);
 }
 
 export async function retrieveSubscription(subscriptionId: string) {
+  const stripe = getStripe();
   return await stripe.subscriptions.retrieve(subscriptionId);
 }
