@@ -2,32 +2,24 @@ import { createClient } from "@/lib/supabase/server";
 import { formatNaira } from "@/lib/tax-engine/nta2025";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { EmptyState } from "@/components/ui/empty-state";
 import { ExpenseEntryForm } from "@/components/forms/expense-entry-form";
 import { EntryActions } from "@/components/ui/entry-actions";
 
 const FIXED_LABELS: Record<string, string> = {
-  rent: "Rent",
-  food: "Food",
-  transport: "Transport",
-  utilities: "Utilities",
-  health: "Health",
-  education: "Education",
-  entertainment: "Entertainment",
-  other: "Other",
+  rent: "Rent", food: "Food", transport: "Transport",
+  utilities: "Utilities", health: "Health", education: "Education",
+  entertainment: "Entertainment", other: "Other",
 };
 
 const DEDUCTION_LABELS: Record<string, string> = {
-  rent_relief: "Rent relief",
-  pension: "Pension",
-  nhf: "NHF",
-  life_assurance: "Life assurance",
+  rent_relief: "Rent relief", pension: "Pension",
+  nhf: "NHF", life_assurance: "Life assurance",
 };
 
 export default async function ExpensesPage() {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
 
   const { data: entries } = await supabase
     .from("expenses")
@@ -56,10 +48,9 @@ export default async function ExpensesPage() {
         </p>
       </div>
 
-      <ExpenseEntryForm
-        userId={user!.id}
-        userCategories={userCategories ?? []}
-      />
+      <div id="entry-form">
+        <ExpenseEntryForm userId={user!.id} userCategories={userCategories ?? []} />
+      </div>
 
       {(entries ?? []).length > 0 && (
         <div className="flex gap-6 text-sm">
@@ -84,9 +75,13 @@ export default async function ExpensesPage() {
         </CardHeader>
         <CardContent className="divide-y">
           {(entries ?? []).length === 0 ? (
-            <p className="text-sm text-muted-foreground py-4 text-center">
-              No expenses logged yet. Add your first entry above.
-            </p>
+            <EmptyState
+              icon="🧾"
+              title="No expenses logged yet"
+              description="Log your first expense. Tag it as deductible and it'll automatically reduce your estimated tax liability."
+              action={{ label: "Add expense" }}
+              secondary={{ label: "Scan a receipt instead", href: "#entry-form" }}
+            />
           ) : (
             (entries ?? []).map((entry) => {
               const categoryLabel =
@@ -115,9 +110,7 @@ export default async function ExpensesPage() {
                     </div>
                     <p className="text-xs text-muted-foreground mt-1">
                       {new Date(entry.date).toLocaleDateString("en-NG", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
+                        day: "numeric", month: "short", year: "numeric",
                       })}
                       {entry.notes && <> &middot; {entry.notes}</>}
                     </p>
