@@ -238,17 +238,19 @@ const css = `
 // ─── Mock data ────────────────────────────────────────────────────────────────
 
 const mockBudgets = [
-  { label: "Rent",      pct: 100, color: "#EF4444" },
-  { label: "Food",      pct: 64,  color: "#1A6B4A" },
-  { label: "Transport", pct: 72,  color: "#1A6B4A" },
-  { label: "Savings",   pct: 45,  color: "#1A6B4A" },
+  { label: "Rent", pct: 100, color: "#EF4444" },
+  { label: "Food", pct: 64, color: "#1A6B4A" },
+  { label: "Transport", pct: 72, color: "#1A6B4A" },
+  { label: "Savings", pct: 45, color: "#1A6B4A" },
 ];
 
 // ─── Waitlist form ────────────────────────────────────────────────────────────
 
 function WaitlistForm({ dark = false }: { dark?: boolean }) {
-  const [email, setEmail]     = useState("");
-  const [status, setStatus]   = useState<"idle" | "loading" | "done" | "error">("idle");
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">(
+    "idle",
+  );
   const [message, setMessage] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
@@ -277,13 +279,19 @@ function WaitlistForm({ dark = false }: { dark?: boolean }) {
 
   if (status === "done") {
     return (
-      <div style={{
-        background: dark ? "rgba(255,255,255,0.12)" : "var(--green-lt)",
-        borderRadius: 12, padding: "14px 20px",
-        color: dark ? "#fff" : "var(--green)",
-        fontWeight: 500, fontSize: 15,
-        display: "flex", alignItems: "center", gap: 10,
-      }}>
+      <div
+        style={{
+          background: dark ? "rgba(255,255,255,0.12)" : "var(--green-lt)",
+          borderRadius: 12,
+          padding: "14px 20px",
+          color: dark ? "#fff" : "var(--green)",
+          fontWeight: 500,
+          fontSize: 15,
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+        }}
+      >
         <span>✓</span> {message}
       </div>
     );
@@ -299,7 +307,15 @@ function WaitlistForm({ dark = false }: { dark?: boolean }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          style={dark ? { background: "rgba(255,255,255,0.12)", border: "1.5px solid rgba(255,255,255,0.2)", color: "#fff" } : {}}
+          style={
+            dark
+              ? {
+                  background: "rgb(235, 233, 233)",
+                  border: "1.5px solid rgba(255,255,255,0.2)",
+                  color: "#fff",
+                }
+              : {}
+          }
         />
         <button
           type="submit"
@@ -311,7 +327,15 @@ function WaitlistForm({ dark = false }: { dark?: boolean }) {
         </button>
       </div>
       {status === "error" && (
-        <p style={{ fontSize: 13, color: dark ? "#FCA5A5" : "#EF4444", marginTop: 8 }}>{message}</p>
+        <p
+          style={{
+            fontSize: 13,
+            color: dark ? "#FCA5A5" : "#EF4444",
+            marginTop: 8,
+          }}
+        >
+          {message}
+        </p>
       )}
     </form>
   );
@@ -325,36 +349,86 @@ export default function LandingPage() {
       <style dangerouslySetInnerHTML={{ __html: css }} />
 
       {/* ── Nav ─────────────────────────────────────────────────────────── */}
-      <nav style={{
-        position: "sticky", top: 0, zIndex: 100,
-        background: "rgba(248,250,249,0.92)", backdropFilter: "blur(14px)",
-        borderBottom: "1px solid var(--border)",
-      }}>
-        <div className="container" style={{ height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <span style={{ fontFamily: "'Bricolage Grotesque'", fontSize: 22, fontWeight: 700, color: "var(--ink)" }}>
+      <nav
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 100,
+          background: "rgba(248,250,249,0.92)",
+          backdropFilter: "blur(14px)",
+          borderBottom: "1px solid var(--border)",
+        }}
+      >
+        <div
+          className="container"
+          style={{
+            height: 64,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "'Bricolage Grotesque'",
+              fontSize: 22,
+              fontWeight: 700,
+              color: "var(--ink)",
+            }}
+          >
             Fin<span style={{ color: "var(--green)" }}>tax</span>
           </span>
 
-          <div className="nav-links" style={{ display: "flex", alignItems: "center", gap: 28 }}>
-            {[["#how-it-works", "How it works"], ["#features", "Features"], ["#pricing", "Pricing"]].map(([href, label]) => (
-              <a key={href} href={href} style={{ fontSize: 14, fontWeight: 500, color: "var(--ink-2)", textDecoration: "none" }}>
+          <div
+            className="nav-links"
+            style={{ display: "flex", alignItems: "center", gap: 28 }}
+          >
+            {[
+              ["#how-it-works", "How it works"],
+              ["#features", "Features"],
+              ["#pricing", "Pricing"],
+            ].map(([href, label]) => (
+              <a
+                key={href}
+                href={href}
+                style={{
+                  fontSize: 14,
+                  fontWeight: 500,
+                  color: "var(--ink-2)",
+                  textDecoration: "none",
+                }}
+              >
                 {label}
               </a>
             ))}
           </div>
 
           <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-            <Link href="/login" className="btn btn-ghost btn-sm">Sign in</Link>
-            <Link href="/signup" className="btn btn-green btn-sm">Get started free</Link>
+            <Link href="/login" className="btn btn-ghost btn-sm">
+              Sign in
+            </Link>
+            <Link href="/signup" className="btn btn-green btn-sm">
+              Get started free
+            </Link>
           </div>
         </div>
       </nav>
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="section" style={{ paddingTop: 72, paddingBottom: 72 }}>
+      <section
+        className="section"
+        style={{ paddingTop: 72, paddingBottom: 72 }}
+      >
         <div className="container">
-          <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "center" }}>
-
+          <div
+            className="hero-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 56,
+              alignItems: "center",
+            }}
+          >
             {/* Left */}
             <div>
               <div className="pill fade-up d1" style={{ marginBottom: 22 }}>
@@ -362,7 +436,14 @@ export default function LandingPage() {
                 Built for NTA 2025 · Nigeria
               </div>
 
-              <h1 className="fade-up d2" style={{ fontSize: "clamp(36px, 5vw, 56px)", marginBottom: 20, color: "var(--ink)" }}>
+              <h1
+                className="fade-up d2"
+                style={{
+                  fontSize: "clamp(36px, 5vw, 56px)",
+                  marginBottom: 20,
+                  color: "var(--ink)",
+                }}
+              >
                 Your money.
                 <br />
                 Your taxes.
@@ -370,13 +451,30 @@ export default function LandingPage() {
                 <span style={{ color: "var(--green)" }}>Finally clear.</span>
               </h1>
 
-              <p className="fade-up d3" style={{ fontSize: 17, color: "var(--ink-3)", lineHeight: 1.75, marginBottom: 32, maxWidth: 460 }}>
-                Fintax tracks your income, logs expenses, scans receipts with AI, and
-                calculates your exact NTA 2025 tax position — every single month.
-                No accountant required.
+              <p
+                className="fade-up d3"
+                style={{
+                  fontSize: 17,
+                  color: "var(--ink-3)",
+                  lineHeight: 1.75,
+                  marginBottom: 32,
+                  maxWidth: 460,
+                }}
+              >
+                Fintax tracks your income, logs expenses, scans receipts with
+                AI, and calculates your exact NTA 2025 tax position — every
+                single month. No accountant required.
               </p>
 
-              <div className="fade-up d4" style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 28 }}>
+              <div
+                className="fade-up d4"
+                style={{
+                  display: "flex",
+                  gap: 12,
+                  flexWrap: "wrap",
+                  marginBottom: 28,
+                }}
+              >
                 <Link href="/signup" className="btn btn-green btn-lg">
                   Start for free →
                 </Link>
@@ -385,55 +483,166 @@ export default function LandingPage() {
                 </a>
               </div>
 
-              <div className="fade-up d4" style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
-                {["Free to start", "No credit card", "NTA 2025 compliant"].map((t) => (
-                  <span key={t} style={{ fontSize: 13, color: "var(--ink-3)", display: "flex", alignItems: "center", gap: 6 }}>
-                    <span style={{ color: "var(--green)", fontWeight: 700 }}>✓</span> {t}
-                  </span>
-                ))}
+              <div
+                className="fade-up d4"
+                style={{ display: "flex", gap: 20, flexWrap: "wrap" }}
+              >
+                {["Free to start", "No credit card", "NTA 2025 compliant"].map(
+                  (t) => (
+                    <span
+                      key={t}
+                      style={{
+                        fontSize: 13,
+                        color: "var(--ink-3)",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 6,
+                      }}
+                    >
+                      <span style={{ color: "var(--green)", fontWeight: 700 }}>
+                        ✓
+                      </span>{" "}
+                      {t}
+                    </span>
+                  ),
+                )}
               </div>
             </div>
 
             {/* Right — dashboard mockup */}
             <div className="float fade-up d3" style={{ position: "relative" }}>
               {/* Glow */}
-              <div style={{ position: "absolute", inset: "-30px", background: "radial-gradient(ellipse at 50% 50%, rgba(26,107,74,0.10) 0%, transparent 65%)", zIndex: 0, borderRadius: "50%" }} />
+              <div
+                style={{
+                  position: "absolute",
+                  inset: "-30px",
+                  background:
+                    "radial-gradient(ellipse at 50% 50%, rgba(26,107,74,0.10) 0%, transparent 65%)",
+                  zIndex: 0,
+                  borderRadius: "50%",
+                }}
+              />
 
-              <div className="mockup-shell" style={{ position: "relative", zIndex: 1 }}>
+              <div
+                className="mockup-shell"
+                style={{ position: "relative", zIndex: 1 }}
+              >
                 {/* Traffic lights */}
                 <div className="mockup-topbar">
-                  {["#FF5F56","#FFBD2E","#27C93F"].map((c) => (
-                    <div key={c} className="mockup-dot" style={{ background: c }} />
+                  {["#FF5F56", "#FFBD2E", "#27C93F"].map((c) => (
+                    <div
+                      key={c}
+                      className="mockup-dot"
+                      style={{ background: c }}
+                    />
                   ))}
-                  <span style={{ fontSize: 12, color: "var(--ink-3)", marginLeft: 8, fontWeight: 500 }}>Fintax Dashboard</span>
+                  <span
+                    style={{
+                      fontSize: 12,
+                      color: "var(--ink-3)",
+                      marginLeft: 8,
+                      fontWeight: 500,
+                    }}
+                  >
+                    Fintax Dashboard
+                  </span>
                 </div>
 
                 {/* Tax widget */}
-                <div style={{ background: "var(--green)", borderRadius: 14, padding: "18px 20px", marginBottom: 16, color: "#fff" }}>
-                  <p style={{ fontSize: 11, opacity: 0.7, marginBottom: 4, fontWeight: 500 }}>Estimated tax liability · 2026</p>
-                  <p style={{ fontFamily: "'Bricolage Grotesque'", fontSize: 30, fontWeight: 700 }}>₦837,675</p>
-                  <p style={{ fontSize: 12, opacity: 0.75, marginTop: 4 }}>8.4% effective rate · Monthly: ₦69,806</p>
+                <div
+                  style={{
+                    background: "var(--green)",
+                    borderRadius: 14,
+                    padding: "18px 20px",
+                    marginBottom: 16,
+                    color: "#fff",
+                  }}
+                >
+                  <p
+                    style={{
+                      fontSize: 11,
+                      opacity: 0.7,
+                      marginBottom: 4,
+                      fontWeight: 500,
+                    }}
+                  >
+                    Estimated tax liability · 2026
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "'Bricolage Grotesque'",
+                      fontSize: 30,
+                      fontWeight: 700,
+                    }}
+                  >
+                    ₦837,675
+                  </p>
+                  <p style={{ fontSize: 12, opacity: 0.75, marginTop: 4 }}>
+                    8.4% effective rate · Monthly: ₦69,806
+                  </p>
                 </div>
 
                 {/* Deduction saving */}
-                <div style={{ background: "var(--green-lt)", borderRadius: 10, padding: "10px 14px", marginBottom: 16, display: "flex", alignItems: "center", gap: 8 }}>
+                <div
+                  style={{
+                    background: "var(--green-lt)",
+                    borderRadius: 10,
+                    padding: "10px 14px",
+                    marginBottom: 16,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                  }}
+                >
                   <span style={{ fontSize: 16 }}>💚</span>
-                  <p style={{ fontSize: 13, color: "var(--green)", fontWeight: 500 }}>Deductions saving you ₦185,325</p>
+                  <p
+                    style={{
+                      fontSize: 13,
+                      color: "var(--green)",
+                      fontWeight: 500,
+                    }}
+                  >
+                    Deductions saving you ₦185,325
+                  </p>
                 </div>
 
                 {/* Budget bars */}
-                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--ink-3)", marginBottom: 12 }}>
+                <p
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: "var(--ink-3)",
+                    marginBottom: 12,
+                  }}
+                >
                   Budget · March 2026
                 </p>
-                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                <div
+                  style={{ display: "flex", flexDirection: "column", gap: 12 }}
+                >
                   {mockBudgets.map((b) => (
                     <div key={b.label}>
-                      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
-                        <span style={{ fontSize: 13, fontWeight: 500 }}>{b.label}</span>
-                        <span style={{ fontSize: 12, color: "var(--ink-3)" }}>{b.pct}%</span>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          marginBottom: 5,
+                        }}
+                      >
+                        <span style={{ fontSize: 13, fontWeight: 500 }}>
+                          {b.label}
+                        </span>
+                        <span style={{ fontSize: 12, color: "var(--ink-3)" }}>
+                          {b.pct}%
+                        </span>
                       </div>
                       <div className="bar-track">
-                        <div className="bar-fill" style={{ width: `${b.pct}%`, background: b.color }} />
+                        <div
+                          className="bar-fill"
+                          style={{ width: `${b.pct}%`, background: b.color }}
+                        />
                       </div>
                     </div>
                   ))}
@@ -448,7 +657,10 @@ export default function LandingPage() {
       <div className="ticker-outer">
         <div className="ticker-track">
           {[...Array(2)].map((_, i) => (
-            <span key={i} style={{ color: "#fff", fontSize: 13, fontWeight: 500 }}>
+            <span
+              key={i}
+              style={{ color: "#fff", fontSize: 13, fontWeight: 500 }}
+            >
               {[
                 "Budget tracking",
                 "AI receipt scanning",
@@ -463,7 +675,11 @@ export default function LandingPage() {
                 "LIRS & NRS ready",
               ].map((item) => (
                 <span key={item} style={{ marginRight: 40 }}>
-                  <span style={{ color: "rgba(255,255,255,0.4)", marginRight: 40 }}>✦</span>
+                  <span
+                    style={{ color: "rgba(255,255,255,0.4)", marginRight: 40 }}
+                  >
+                    ✦
+                  </span>
                   {item}
                 </span>
               ))}
@@ -475,18 +691,67 @@ export default function LandingPage() {
       {/* ── Stats ────────────────────────────────────────────────────────── */}
       <section className="section-sm">
         <div className="container">
-          <div className="stats-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
+          <div
+            className="stats-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: 16,
+            }}
+          >
             {[
-              { value: "₦800k",  label: "Annual exemption threshold",  bg: "var(--green-lt)", color: "var(--green)" },
-              { value: "₦500k",  label: "Max rent relief per year",     bg: "var(--amber-lt)", color: "#B45309"      },
-              { value: "25%",    label: "Top PIT rate (NTA 2025)",      bg: "var(--blue-lt)",  color: "#1D4ED8"      },
-              { value: "₦100k",  label: "Penalty for non-filing",       bg: "var(--red-lt)",   color: "#DC2626"      },
+              {
+                value: "₦800k",
+                label: "Annual exemption threshold",
+                bg: "var(--green-lt)",
+                color: "var(--green)",
+              },
+              {
+                value: "₦500k",
+                label: "Max rent relief per year",
+                bg: "var(--amber-lt)",
+                color: "#B45309",
+              },
+              {
+                value: "25%",
+                label: "Top PIT rate (NTA 2025)",
+                bg: "var(--blue-lt)",
+                color: "#1D4ED8",
+              },
+              {
+                value: "₦100k",
+                label: "Penalty for non-filing",
+                bg: "var(--red-lt)",
+                color: "#DC2626",
+              },
             ].map((s) => (
-              <div key={s.value} style={{ background: s.bg, borderRadius: 14, padding: "22px 20px" }}>
-                <p style={{ fontFamily: "'Bricolage Grotesque'", fontSize: 36, fontWeight: 700, color: s.color, lineHeight: 1 }}>
+              <div
+                key={s.value}
+                style={{
+                  background: s.bg,
+                  borderRadius: 14,
+                  padding: "22px 20px",
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: "'Bricolage Grotesque'",
+                    fontSize: 36,
+                    fontWeight: 700,
+                    color: s.color,
+                    lineHeight: 1,
+                  }}
+                >
                   {s.value}
                 </p>
-                <p style={{ fontSize: 13, color: "var(--ink-2)", marginTop: 6, lineHeight: 1.4 }}>
+                <p
+                  style={{
+                    fontSize: 13,
+                    color: "var(--ink-2)",
+                    marginTop: 6,
+                    lineHeight: 1.4,
+                  }}
+                >
                   {s.label}
                 </p>
               </div>
@@ -502,12 +767,20 @@ export default function LandingPage() {
             <p className="section-label">Features</p>
             <h2 className="section-title">Everything in one place</h2>
             <p className="section-sub" style={{ margin: "0 auto" }}>
-              Budget, track expenses, scan receipts, and see your real tax number.
-              No spreadsheets. No surprises.
+              Budget, track expenses, scan receipts, and see your real tax
+              number. No spreadsheets. No surprises.
             </p>
           </div>
 
-          <div className="features-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 20, marginBottom: 20 }}>
+          <div
+            className="features-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr",
+              gap: 20,
+              marginBottom: 20,
+            }}
+          >
             {[
               {
                 icon: "💰",
@@ -530,11 +803,32 @@ export default function LandingPage() {
             ].map((f) => (
               <div key={f.title} className="card">
                 <div className="feat-icon">{f.icon}</div>
-                <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 10 }}>{f.title}</h3>
-                <p style={{ fontSize: 14, color: "var(--ink-3)", lineHeight: 1.7, marginBottom: 16 }}>{f.desc}</p>
+                <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 10 }}>
+                  {f.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: 14,
+                    color: "var(--ink-3)",
+                    lineHeight: 1.7,
+                    marginBottom: 16,
+                  }}
+                >
+                  {f.desc}
+                </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                   {f.tags.map((t) => (
-                    <span key={t} style={{ fontSize: 11, fontWeight: 600, background: "var(--green-lt)", color: "var(--green)", padding: "4px 10px", borderRadius: 6 }}>
+                    <span
+                      key={t}
+                      style={{
+                        fontSize: 11,
+                        fontWeight: 600,
+                        background: "var(--green-lt)",
+                        color: "var(--green)",
+                        padding: "4px 10px",
+                        borderRadius: 6,
+                      }}
+                    >
                       {t}
                     </span>
                   ))}
@@ -544,16 +838,36 @@ export default function LandingPage() {
           </div>
 
           {/* Wide feature card */}
-          <div className="card" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "center" }}>
+          <div
+            className="card"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 40,
+              alignItems: "center",
+            }}
+          >
             <div>
               <div className="feat-icon">🧾</div>
-              <h3 style={{ fontSize: 22, fontWeight: 700, marginBottom: 12 }}>Deductions that actually work for you</h3>
-              <p style={{ fontSize: 15, color: "var(--ink-3)", lineHeight: 1.7, marginBottom: 20 }}>
-                Most Nigerians miss deductions they&apos;re legally entitled to. Fintax
-                automatically applies your rent relief, pension contributions, and NHF —
-                and shows you exactly how much you&apos;re saving in naira.
+              <h3 style={{ fontSize: 22, fontWeight: 700, marginBottom: 12 }}>
+                Deductions that actually work for you
+              </h3>
+              <p
+                style={{
+                  fontSize: 15,
+                  color: "var(--ink-3)",
+                  lineHeight: 1.7,
+                  marginBottom: 20,
+                }}
+              >
+                Most Nigerians miss deductions they&apos;re legally entitled to.
+                Fintax automatically applies your rent relief, pension
+                contributions, and NHF — and shows you exactly how much
+                you&apos;re saving in naira.
               </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              <div
+                style={{ display: "flex", flexDirection: "column", gap: 10 }}
+              >
                 {[
                   "Rent relief — 20% of annual rent (max ₦500k)",
                   "Pension — 8% of gross salary (PRA 2014)",
@@ -569,27 +883,87 @@ export default function LandingPage() {
             </div>
 
             {/* Mini breakdown */}
-            <div style={{ background: "var(--bg)", borderRadius: 14, padding: 22, border: "1px solid var(--border)" }}>
-              <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--ink-3)", marginBottom: 16 }}>
+            <div
+              style={{
+                background: "var(--bg)",
+                borderRadius: 14,
+                padding: 22,
+                border: "1px solid var(--border)",
+              }}
+            >
+              <p
+                style={{
+                  fontSize: 12,
+                  fontWeight: 700,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: "var(--ink-3)",
+                  marginBottom: 16,
+                }}
+              >
                 Sample calculation · Lagos professional
               </p>
               {[
-                { label: "Gross income",    value: "₦6,500,000", accent: false },
-                { label: "Rent relief",     value: "− ₦240,000",  accent: true  },
-                { label: "Pension (8%)",    value: "− ₦480,000",  accent: true  },
-                { label: "NHF (2.5%)",      value: "− ₦162,500",  accent: true  },
-                { label: "Taxable income",  value: "₦5,617,500", accent: false },
-                { label: "PIT estimate",    value: "₦887,675",   accent: false },
-                { label: "WHT credit",      value: "− ₦50,000",  accent: true  },
+                { label: "Gross income", value: "₦6,500,000", accent: false },
+                { label: "Rent relief", value: "− ₦240,000", accent: true },
+                { label: "Pension (8%)", value: "− ₦480,000", accent: true },
+                { label: "NHF (2.5%)", value: "− ₦162,500", accent: true },
+                { label: "Taxable income", value: "₦5,617,500", accent: false },
+                { label: "PIT estimate", value: "₦887,675", accent: false },
+                { label: "WHT credit", value: "− ₦50,000", accent: true },
               ].map((row, i) => (
-                <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "9px 0", borderBottom: i < 6 ? "1px solid var(--border)" : "none" }}>
-                  <span style={{ fontSize: 13, color: "var(--ink-3)" }}>{row.label}</span>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: row.accent ? "var(--green)" : "var(--ink)" }}>{row.value}</span>
+                <div
+                  key={i}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    padding: "9px 0",
+                    borderBottom: i < 6 ? "1px solid var(--border)" : "none",
+                  }}
+                >
+                  <span style={{ fontSize: 13, color: "var(--ink-3)" }}>
+                    {row.label}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: 13,
+                      fontWeight: 600,
+                      color: row.accent ? "var(--green)" : "var(--ink)",
+                    }}
+                  >
+                    {row.value}
+                  </span>
                 </div>
               ))}
-              <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 12, background: "var(--green-lt)", borderRadius: 8, padding: "12px 14px", marginTop: 8 }}>
-                <span style={{ fontSize: 14, fontWeight: 700, color: "var(--green)" }}>Net liability</span>
-                <span style={{ fontSize: 16, fontWeight: 700, color: "var(--green)" }}>₦837,675</span>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  paddingTop: 12,
+                  background: "var(--green-lt)",
+                  borderRadius: 8,
+                  padding: "12px 14px",
+                  marginTop: 8,
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: 14,
+                    fontWeight: 700,
+                    color: "var(--green)",
+                  }}
+                >
+                  Net liability
+                </span>
+                <span
+                  style={{
+                    fontSize: 16,
+                    fontWeight: 700,
+                    color: "var(--green)",
+                  }}
+                >
+                  ₦837,675
+                </span>
               </div>
             </div>
           </div>
@@ -600,22 +974,59 @@ export default function LandingPage() {
       <section className="section-sm">
         <div className="container">
           <div className="nta-strip">
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center", position: "relative", zIndex: 1 }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: 48,
+                alignItems: "center",
+                position: "relative",
+                zIndex: 1,
+              }}
+            >
               <div>
-                <div className="pill" style={{ background: "rgba(255,255,255,0.15)", color: "#fff", marginBottom: 20 }}>
+                <div
+                  className="pill"
+                  style={{
+                    background: "rgba(255,255,255,0.15)",
+                    color: "#fff",
+                    marginBottom: 20,
+                  }}
+                >
                   New tax law · June 2025
                 </div>
-                <h2 style={{ fontFamily: "'Bricolage Grotesque'", fontSize: "clamp(24px, 3vw, 36px)", color: "#fff", marginBottom: 16, lineHeight: 1.2 }}>
-                  Nigeria&apos;s biggest tax reform is live. Fintax is built for it.
+                <h2
+                  style={{
+                    fontFamily: "'Bricolage Grotesque'",
+                    fontSize: "clamp(24px, 3vw, 36px)",
+                    color: "#fff",
+                    marginBottom: 16,
+                    lineHeight: 1.2,
+                  }}
+                >
+                  Nigeria&apos;s biggest tax reform is live. Fintax is built for
+                  it.
                 </h2>
-                <p style={{ fontSize: 15, color: "rgba(255,255,255,0.75)", lineHeight: 1.7 }}>
-                  The Nigeria Tax Act 2025 replaced FIRS with the NRS, consolidated all
-                  major tax laws, and introduced new PIT brackets, a ₦800k exemption,
-                  and mandatory digital filing. Fintax applies every single rule
-                  automatically.
+                <p
+                  style={{
+                    fontSize: 15,
+                    color: "rgba(255,255,255,0.75)",
+                    lineHeight: 1.7,
+                  }}
+                >
+                  The Nigeria Tax Act 2025 replaced FIRS with the NRS,
+                  consolidated all major tax laws, and introduced new PIT
+                  brackets, a ₦800k exemption, and mandatory digital filing.
+                  Fintax applies every single rule automatically.
                 </p>
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: 10,
+                }}
+              >
                 {[
                   "₦800k annual exemption",
                   "Progressive PIT (0–25%)",
@@ -626,7 +1037,11 @@ export default function LandingPage() {
                   "NRS replaces FIRS",
                   "Joint Revenue Board",
                 ].map((item) => (
-                  <div key={item} className="check-row" style={{ color: "rgba(255,255,255,0.85)", fontSize: 13 }}>
+                  <div
+                    key={item}
+                    className="check-row"
+                    style={{ color: "rgba(255,255,255,0.85)", fontSize: 13 }}
+                  >
                     <div className="check-icon check-icon-white">✓</div>
                     <span>{item}</span>
                   </div>
@@ -648,7 +1063,14 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="steps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+          <div
+            className="steps-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: 24,
+            }}
+          >
             {[
               {
                 n: "1",
@@ -669,10 +1091,29 @@ export default function LandingPage() {
                 color: "var(--blue-lt)",
               },
             ].map((step) => (
-              <div key={step.n} style={{ background: step.color, borderRadius: 16, padding: "32px 28px" }}>
-                <div className="step-num" style={{ marginBottom: 20 }}>{step.n}</div>
-                <h3 style={{ fontSize: 19, fontWeight: 700, marginBottom: 12 }}>{step.title}</h3>
-                <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.7 }}>{step.desc}</p>
+              <div
+                key={step.n}
+                style={{
+                  background: step.color,
+                  borderRadius: 16,
+                  padding: "32px 28px",
+                }}
+              >
+                <div className="step-num" style={{ marginBottom: 20 }}>
+                  {step.n}
+                </div>
+                <h3 style={{ fontSize: 19, fontWeight: 700, marginBottom: 12 }}>
+                  {step.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: 14,
+                    color: "var(--ink-2)",
+                    lineHeight: 1.7,
+                  }}
+                >
+                  {step.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -686,25 +1127,81 @@ export default function LandingPage() {
             <p className="section-label">Pricing</p>
             <h2 className="section-title">Simple pricing, big savings</h2>
             <p className="section-sub" style={{ margin: "0 auto" }}>
-              The average user saves more in tax deductions than the cost of a year of Premium.
+              The average user saves more in tax deductions than the cost of a
+              year of Premium.
             </p>
           </div>
 
-          <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, maxWidth: 700, margin: "0 auto" }}>
+          <div
+            className="pricing-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 20,
+              maxWidth: 700,
+              margin: "0 auto",
+            }}
+          >
             {/* Free */}
             <div className="price-card">
-              <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--ink-3)", marginBottom: 10 }}>Free</p>
-              <p style={{ fontFamily: "'Bricolage Grotesque'", fontSize: 44, fontWeight: 700, color: "var(--ink)", lineHeight: 1, marginBottom: 4 }}>₦0</p>
-              <p style={{ fontSize: 14, color: "var(--ink-3)", marginBottom: 28 }}>Always free</p>
-              <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 28 }}>
-                {["Budget tracking", "Manual expense entry", "Income log", "3 custom categories"].map((f) => (
+              <p
+                style={{
+                  fontSize: 12,
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: "var(--ink-3)",
+                  marginBottom: 10,
+                }}
+              >
+                Free
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Bricolage Grotesque'",
+                  fontSize: 44,
+                  fontWeight: 700,
+                  color: "var(--ink)",
+                  lineHeight: 1,
+                  marginBottom: 4,
+                }}
+              >
+                ₦0
+              </p>
+              <p
+                style={{
+                  fontSize: 14,
+                  color: "var(--ink-3)",
+                  marginBottom: 28,
+                }}
+              >
+                Always free
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 12,
+                  marginBottom: 28,
+                }}
+              >
+                {[
+                  "Budget tracking",
+                  "Manual expense entry",
+                  "Income log",
+                  "3 custom categories",
+                ].map((f) => (
                   <div key={f} className="check-row">
                     <div className="check-icon">✓</div>
                     <span style={{ fontSize: 14 }}>{f}</span>
                   </div>
                 ))}
               </div>
-              <Link href="/signup" className="btn btn-ghost" style={{ width: "100%", justifyContent: "center" }}>
+              <Link
+                href="/signup"
+                className="btn btn-ghost"
+                style={{ width: "100%", justifyContent: "center" }}
+              >
                 Get started
               </Link>
             </div>
@@ -712,10 +1209,47 @@ export default function LandingPage() {
             {/* Premium */}
             <div className="price-card popular">
               <div className="popular-badge">Most popular</div>
-              <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: 10 }}>Premium</p>
-              <p style={{ fontFamily: "'Bricolage Grotesque'", fontSize: 44, fontWeight: 700, color: "#fff", lineHeight: 1, marginBottom: 4 }}>₦3,500</p>
-              <p style={{ fontSize: 14, color: "rgba(255,255,255,0.6)", marginBottom: 28 }}>per month · 30-day free trial</p>
-              <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 28 }}>
+              <p
+                style={{
+                  fontSize: 12,
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: "rgba(255,255,255,0.6)",
+                  marginBottom: 10,
+                }}
+              >
+                Premium
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Bricolage Grotesque'",
+                  fontSize: 44,
+                  fontWeight: 700,
+                  color: "#fff",
+                  lineHeight: 1,
+                  marginBottom: 4,
+                }}
+              >
+                ₦3,500
+              </p>
+              <p
+                style={{
+                  fontSize: 14,
+                  color: "rgba(255,255,255,0.6)",
+                  marginBottom: 28,
+                }}
+              >
+                per month · 30-day free trial
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 12,
+                  marginBottom: 28,
+                }}
+              >
                 {[
                   "Everything in Free",
                   "NTA 2025 tax estimation",
@@ -726,11 +1260,19 @@ export default function LandingPage() {
                 ].map((f) => (
                   <div key={f} className="check-row">
                     <div className="check-icon check-icon-white">✓</div>
-                    <span style={{ fontSize: 14, color: "rgba(255,255,255,0.9)" }}>{f}</span>
+                    <span
+                      style={{ fontSize: 14, color: "rgba(255,255,255,0.9)" }}
+                    >
+                      {f}
+                    </span>
                   </div>
                 ))}
               </div>
-              <Link href="/signup" className="btn btn-white" style={{ width: "100%", justifyContent: "center" }}>
+              <Link
+                href="/signup"
+                className="btn btn-white"
+                style={{ width: "100%", justifyContent: "center" }}
+              >
                 Start free trial
               </Link>
             </div>
@@ -741,28 +1283,88 @@ export default function LandingPage() {
       {/* ── Waitlist ─────────────────────────────────────────────────────── */}
       <section id="waitlist" className="section" style={{ paddingTop: 0 }}>
         <div className="container">
-          <div style={{
-            background: "var(--green)", borderRadius: 24,
-            padding: "64px 56px", textAlign: "center",
-            position: "relative", overflow: "hidden",
-          }}>
+          <div
+            style={{
+              background: "var(--green)",
+              borderRadius: 24,
+              padding: "64px 56px",
+              textAlign: "center",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
             {/* Decorative circles */}
-            <div style={{ position: "absolute", top: -60, right: -60, width: 200, height: 200, borderRadius: "50%", background: "rgba(255,255,255,0.05)" }} />
-            <div style={{ position: "absolute", bottom: -40, left: -40, width: 160, height: 160, borderRadius: "50%", background: "rgba(255,255,255,0.04)" }} />
+            <div
+              style={{
+                position: "absolute",
+                top: -60,
+                right: -60,
+                width: 200,
+                height: 200,
+                borderRadius: "50%",
+                background: "rgba(255,255,255,0.05)",
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                bottom: -40,
+                left: -40,
+                width: 160,
+                height: 160,
+                borderRadius: "50%",
+                background: "rgba(255,255,255,0.04)",
+              }}
+            />
 
-            <div style={{ position: "relative", zIndex: 1, maxWidth: 560, margin: "0 auto" }}>
-              <div className="pill" style={{ background: "rgba(255,255,255,0.15)", color: "#fff", marginBottom: 22 }}>
+            <div
+              style={{
+                position: "relative",
+                zIndex: 1,
+                maxWidth: 560,
+                margin: "0 auto",
+              }}
+            >
+              <div
+                className="pill"
+                style={{
+                  background: "rgba(255,255,255,0.15)",
+                  color: "#fff",
+                  marginBottom: 22,
+                }}
+              >
                 🚀 Early access
               </div>
-              <h2 style={{ fontFamily: "'Bricolage Grotesque'", fontSize: "clamp(26px, 4vw, 40px)", color: "#fff", marginBottom: 14 }}>
+              <h2
+                style={{
+                  fontFamily: "'Bricolage Grotesque'",
+                  fontSize: "clamp(26px, 4vw, 40px)",
+                  color: "#fff",
+                  marginBottom: 14,
+                }}
+              >
                 Get early access to Fintax
               </h2>
-              <p style={{ fontSize: 16, color: "rgba(255,255,255,0.75)", marginBottom: 32, lineHeight: 1.7 }}>
-                Join professionals across Lagos on the waitlist. Be the first to know
-                when we launch new features, and get 3 months of Premium free.
+              <p
+                style={{
+                  fontSize: 16,
+                  color: "rgba(255,255,255,0.75)",
+                  marginBottom: 32,
+                  lineHeight: 1.7,
+                }}
+              >
+                Join professionals across Lagos on the waitlist. Be the first to
+                know when we launch new features, and get 3 months of Premium
+                free.
               </p>
               <WaitlistForm dark />
-              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", marginTop: 14 }}>
+              <p
+                style={{
+                  fontSize: 12,
+                  color: "rgba(255,255,255,0.5)",
+                  marginTop: 14,
+                }}
+              >
                 No spam. Unsubscribe any time. Your data is never sold.
               </p>
             </div>
@@ -771,14 +1373,41 @@ export default function LandingPage() {
       </section>
 
       {/* ── Footer ───────────────────────────────────────────────────────── */}
-      <footer style={{ borderTop: "1px solid var(--border)", padding: "40px 0" }}>
-        <div className="container" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
-          <span style={{ fontFamily: "'Bricolage Grotesque'", fontSize: 20, fontWeight: 700 }}>
+      <footer
+        style={{ borderTop: "1px solid var(--border)", padding: "40px 0" }}
+      >
+        <div
+          className="container"
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: 16,
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "'Bricolage Grotesque'",
+              fontSize: 20,
+              fontWeight: 700,
+            }}
+          >
             Fin<span style={{ color: "var(--green)" }}>tax</span>
           </span>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
             {["Privacy Policy", "Terms", "Contact"].map((l) => (
-              <a key={l} href="#" style={{ fontSize: 13, color: "var(--ink-3)", textDecoration: "none" }}>{l}</a>
+              <a
+                key={l}
+                href="#"
+                style={{
+                  fontSize: 13,
+                  color: "var(--ink-3)",
+                  textDecoration: "none",
+                }}
+              >
+                {l}
+              </a>
             ))}
           </div>
           <p style={{ fontSize: 13, color: "var(--ink-3)" }}>

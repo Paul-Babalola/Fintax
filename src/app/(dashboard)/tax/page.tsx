@@ -9,6 +9,8 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TaxPdfButton } from "@/components/tax/tax-pdf-button";
+import { TaxHistory } from "@/components/tax/tax-history";
+import { TaxFormGenerator } from "@/components/efiling/form-generator";
 import { Info, CheckCircle2, AlertCircle, TrendingDown } from "lucide-react";
 
 export default async function TaxPage() {
@@ -322,6 +324,25 @@ export default async function TaxPage() {
             <p>{TAX_DISCLAIMER}</p>
           </div>
         </>
+      )}
+
+      {/* ── Tax History ── */}
+      <TaxHistory />
+
+      {/* ── Tax Form Generation ── */}
+      {hasIncome && (
+        <TaxFormGenerator 
+          taxData={{
+            taxpayer_name: 'User Name', // In real app, get from user profile
+            tin: 'TIN123456789',
+            gross_income: estimate.gross_income,
+            taxable_income: estimate.taxable_income,
+            tax_liability: estimate.pit_before_wht,
+            wht_credit: estimate.wht_credit,
+            net_tax_due: estimate.net_tax_liability,
+            year: now.getFullYear()
+          }}
+        />
       )}
     </div>
   );

@@ -194,6 +194,136 @@ export interface Database {
         Update: never;
       };
 
+      subscriptions: {
+        Row: {
+          id:                    string;
+          user_id:               string;
+          stripe_customer_id:    string;
+          stripe_subscription_id: string | null;
+          plan_name:             string;
+          status:                string;
+          current_period_start:  string;
+          current_period_end:    string;
+          created_at:            string;
+          updated_at:            string;
+        };
+        Insert: {
+          id?:                   string;
+          user_id:               string;
+          stripe_customer_id:    string;
+          stripe_subscription_id?: string | null;
+          plan_name:             string;
+          status:                string;
+          current_period_start:  string;
+          current_period_end:    string;
+        };
+        Update: {
+          stripe_subscription_id?: string | null;
+          plan_name?:            string;
+          status?:               string;
+          current_period_start?: string;
+          current_period_end?:   string;
+        };
+      };
+
+      payments: {
+        Row: {
+          id:                    string;
+          user_id:               string;
+          stripe_payment_intent_id: string;
+          amount:                number;
+          currency:              string;
+          status:                string;
+          plan_name:             string;
+          created_at:            string;
+        };
+        Insert: {
+          id?:                   string;
+          user_id:               string;
+          stripe_payment_intent_id: string;
+          amount:                number;
+          currency:              string;
+          status:                string;
+          plan_name:             string;
+        };
+        Update: {
+          status?: string;
+        };
+      };
+
+      bank_connections: {
+        Row: {
+          id:                    string;
+          user_id:               string;
+          mono_account_id:       string;
+          bank_name:             string;
+          bank_code:             string;
+          account_number:        string;
+          account_name:          string;
+          account_type:          string;
+          is_active:             boolean;
+          last_sync:             string | null;
+          created_at:            string;
+          updated_at:            string;
+        };
+        Insert: {
+          id?:                   string;
+          user_id:               string;
+          mono_account_id:       string;
+          bank_name:             string;
+          bank_code:             string;
+          account_number:        string;
+          account_name:          string;
+          account_type:          string;
+          is_active?:            boolean;
+          last_sync?:            string | null;
+        };
+        Update: {
+          is_active?:            boolean;
+          last_sync?:            string | null;
+        };
+      };
+
+      synced_transactions: {
+        Row: {
+          id:                    string;
+          user_id:               string;
+          bank_connection_id:    string;
+          mono_transaction_id:   string;
+          amount:                number;
+          description:           string;
+          transaction_date:      string;
+          transaction_type:      'debit' | 'credit';
+          category:              string | null;
+          balance_after:         number;
+          is_processed:          boolean;
+          income_entry_id:       string | null;
+          expense_entry_id:      string | null;
+          created_at:            string;
+        };
+        Insert: {
+          id?:                   string;
+          user_id:               string;
+          bank_connection_id:    string;
+          mono_transaction_id:   string;
+          amount:                number;
+          description:           string;
+          transaction_date:      string;
+          transaction_type:      'debit' | 'credit';
+          category?:             string | null;
+          balance_after:         number;
+          is_processed?:         boolean;
+          income_entry_id?:      string | null;
+          expense_entry_id?:     string | null;
+        };
+        Update: {
+          category?:             string | null;
+          is_processed?:         boolean;
+          income_entry_id?:      string | null;
+          expense_entry_id?:     string | null;
+        };
+      };
+
     };
 
     Views: {

@@ -9,6 +9,9 @@ import {
   Wallet,
   FileText,
   Settings,
+  CreditCard,
+  Landmark,
+  Plane,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -17,6 +20,9 @@ const NAV_ITEMS = [
   { href: "/expenses", label: "Expenses", icon: Receipt },
   { href: "/budget", label: "Budget", icon: Wallet },
   { href: "/tax", label: "Tax", icon: FileText },
+  { href: "/diaspora", label: "Diaspora", icon: Plane },
+  { href: "/banks", label: "Banks", icon: Landmark },
+  { href: "/pricing", label: "Pricing", icon: CreditCard },
   { href: "/settings", label: "Settings", icon: Settings },
 ];
 
